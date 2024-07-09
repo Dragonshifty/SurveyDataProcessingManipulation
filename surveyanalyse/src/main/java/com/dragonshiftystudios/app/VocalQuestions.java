@@ -31,13 +31,15 @@ public class VocalQuestions {
     private String myOneMark;
     private String flyOnMark;
 
+    private String participantGender;
+
 
     public VocalQuestions(String gender, String shinePref, String clearlyPref, String finePref, 
             String mOEPref,
             String myOnePref, String flyOnPref, String shineSim, String clearlySim, String fineSim, String mOESim,
             String myOneSim, String flyOnSim, String shineSuits, String clearlySuits, String fineSuits, String mOESuits,
             String myOneSuits, String flyOnSuits, String shineMark, String clearlyMark, String fineMark, String mOEMark,
-            String myOneMark, String flyOnMark) {
+            String myOneMark, String flyOnMark, String participantGender) {
         this.gender = gender;
         this.shinePref = shinePref;
         this.clearlyPref = clearlyPref;
@@ -63,6 +65,7 @@ public class VocalQuestions {
         this.mOEMark = mOEMark;
         this.myOneMark = myOneMark;
         this.flyOnMark = flyOnMark;
+        this.participantGender = participantGender;
     }
 
     public String getGender() {
@@ -163,5 +166,9 @@ public class VocalQuestions {
 
     public String getFlyOnMark() {
         return flyOnMark;
+    }
+
+    public String getParticipantGender() {
+        return participantGender;
     }
 }

@@ -52,8 +52,8 @@ public class AnalyseText {
         return Arrays.stream(names).anyMatch(word -> description.matches(".*\\b" + word + "\\b.*"));
     }
 
-    private void setGenderCode(int index, String song, boolean male, boolean female, boolean nonBinary){
-        if ((male && female) || (male && nonBinary) || (female && nonBinary)){
+    private void setGenderCode(int index, String song, boolean male, boolean female, boolean nonBinary){        
+      if ((male && female) || (male && nonBinary) || (female && nonBinary)){
             switch (song){
                 case "DW":
                     participants.get(index).setSuggestedGenderDW("");
@@ -110,5 +110,102 @@ public class AnalyseText {
                     System.out.print("Error set gender code");
             }
         }
+    }
+
+    public void showSuggestedGenderScores()
+    {
+        int dwMale = 0;
+        int dwFemale = 0;
+        int dwNonBinary = 0;
+        int dwUndeclared = 0;
+
+        int rMale = 0;
+        int rFemale = 0;
+        int rNonBinary = 0;
+        int rUndeclared = 0;
+
+        int tMale = 0;
+        int tFemale = 0;
+        int tNonBinary = 0;
+        int tUndeclared = 0;
+
+        for (Participant participant : participants){
+            String dwGender = participant.getSuggestedGenderDW();
+            String rGender = participant.getSuggestedGenderR();
+            String tGender = participant.getSuggestedGenderT();
+            
+            if (dwGender == null){
+                dwUndeclared++;
+            } else {
+                switch (dwGender) {
+                    case "1":
+                        dwMale++;
+                        break;
+                    case "2":
+                        dwFemale++;
+                        break;
+                    case "3":
+                        dwNonBinary++;
+                        break;
+                    default:
+                        dwUndeclared++;
+                        break;
+                }
+            }
+            
+            if (rGender == null){
+                rUndeclared++;
+            } else {
+                switch (rGender) {
+                    case "1":
+                        rMale++;
+                        break;
+                    case "2":
+                        rFemale++;
+                        break;
+                    case "3":
+                        rNonBinary++;
+                        break;
+                    default:
+                        rUndeclared++;
+                        break;
+                }
+            }
+            
+            if (tGender == null){
+                tUndeclared++;
+            } else {
+                switch (tGender) {
+                    case "1":
+                        tMale++;
+                        break;
+                    case "2":
+                        tFemale++;
+                        break;
+                    case "3":
+                        tNonBinary++;
+                        break;
+                    default:
+                        tUndeclared++;
+                        break;
+                }
+            }  
+        }
+
+
+        System.out.println("DW Male " + dwMale);
+        System.out.println("DW Female " + dwFemale);
+        System.out.println("DW Undelcared " + dwUndeclared);
+        System.out.println("DW Non Binary " + dwNonBinary);
+
+        System.out.println("R Male " + rMale);
+        System.out.println("R Female " + rFemale);
+        System.out.println("R Undelcared " + rUndeclared);
+        System.out.println("RNon Binary " + rNonBinary);
+
+        System.out.println("T Male " + tMale);
+        System.out.println("T Female " + tFemale);
+        System.out.println("T Undelcared " + tUndeclared);
+        System.out.println("T Non Binary " + tNonBinary);
     }
 }

@@ -34,14 +34,13 @@ public class AnalyseQuestions {
         int myOneFemale = 0;
         int flyOnMale = 0;
         int flyOnFemale = 0;
-        
 
         for (VocalQuestions vocalQuestions : vocalQuestionsList){            
             shineMale += vocalQuestions.getShinePref().equals("6") ? 1 : 0;
             shineFemale += vocalQuestions.getShinePref().equals("7") ? 1 : 0;
 
             clearlyMale += vocalQuestions.getClearlyPref().equals("6") ? 1 : 0;
-            clearlyFemale += vocalQuestions.getClearlyPref().equals("6") ? 1 : 0;
+            clearlyFemale += vocalQuestions.getClearlyPref().equals("7") ? 1 : 0;
 
             fineMale += vocalQuestions.getFinePref().equals("6") ? 1 : 0;
             fineFemale += vocalQuestions.getFinePref().equals("7") ? 1 : 0;
@@ -92,7 +91,6 @@ public class AnalyseQuestions {
         outputToText.writeToText(String.format("%s - Male: %d (%.2f%%), Female: %d (%.2f%%)", track, male, maleMean, female, femaleMean));
     }
 
-
     public void getGenderedPreferences(String gender){
         double listTotal = 0;
 
@@ -118,7 +116,7 @@ public class AnalyseQuestions {
                 shineFemale += vocalQuestions.getShinePref().equals("7") ? 1 : 0;
 
                 clearlyMale += vocalQuestions.getClearlyPref().equals("6") ? 1 : 0;
-                clearlyFemale += vocalQuestions.getClearlyPref().equals("6") ? 1 : 0;
+                clearlyFemale += vocalQuestions.getClearlyPref().equals("7") ? 1 : 0;
 
                 fineMale += vocalQuestions.getFinePref().equals("6") ? 1 : 0;
                 fineFemale += vocalQuestions.getFinePref().equals("7") ? 1 : 0;
@@ -214,7 +212,7 @@ public class AnalyseQuestions {
                 mOEMark += Integer.parseInt(vocalQuestions.getmOEMark());
                 myOneMark += Integer.parseInt(vocalQuestions.getMyOneMark());
                 flyOnMark += Integer.parseInt(vocalQuestions.getFlyOnMark());
-            } else if (genderOrTotal.equals("Male")){
+            } else if (vocalQuestions.getGender().equals("Male") && genderOrTotal.equals("Male")){
                 maleTotal++;
 
                 shineSim += Integer.parseInt(vocalQuestions.getShineSim());
@@ -237,7 +235,7 @@ public class AnalyseQuestions {
                 mOEMark += Integer.parseInt(vocalQuestions.getmOEMark());
                 myOneMark += Integer.parseInt(vocalQuestions.getMyOneMark());
                 flyOnMark += Integer.parseInt(vocalQuestions.getFlyOnMark());
-            } else if (genderOrTotal.equals("Female")){
+            } else if (vocalQuestions.getGender().equals("Female") && genderOrTotal.equals("Female")){
                 femaleTotal++;
 
                 shineSim += Integer.parseInt(vocalQuestions.getShineSim());
@@ -261,7 +259,6 @@ public class AnalyseQuestions {
                 myOneMark += Integer.parseInt(vocalQuestions.getMyOneMark());
                 flyOnMark += Integer.parseInt(vocalQuestions.getFlyOnMark());
             }
-            
         }
 
         double totalParticipants = 0;

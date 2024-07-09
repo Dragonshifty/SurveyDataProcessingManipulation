@@ -47,8 +47,7 @@ public class Participant {
         this.suggestedGenderT = genderCode;
     }
 
-    public String getSuggestedGenderT()
-    {
+    public String getSuggestedGenderT() {
         return suggestedGenderT;
     }
 }

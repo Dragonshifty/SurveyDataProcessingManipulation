@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 public class CSVConverter {
-    private String descriptionsCSV = "descriptions.csv";
+    private String descriptionsCSV = "descriptions with gender.csv";
     private String vocalQuestionsFullCSV = "VocalQuestionsFull.csv";
+    private String vocalQuestionsFullWithGender = "VocalQuestionsFullWithGender.csv";
 
     public LinkedList<Participant> populateParticipants(){
         LinkedList<Participant> participants = new LinkedList<>();
@@ -37,7 +38,7 @@ public class CSVConverter {
     }
 
     public void insertGenderCodeAndRebuildCSV(LinkedList<Participant> amendedList){
-        String descriptionWithGender = "DescriptionsWithGender.csv";
+        String descriptionWithGender = "DescriptionsWithGenderWithParticipant.csv";
 
         try (CSVWriter csvWriter = new CSVWriter(new FileWriter(descriptionWithGender))){
             csvWriter.writeNext(new String[] {"Dream Wistfully", "DW Gender", "Rising", "Rising Gender", "Triggered", "Triggered Gender"});
@@ -49,7 +50,7 @@ public class CSVConverter {
                     participant.getRisingDescription(),
                     participant.getSuggestedGenderR(),
                     participant.getTriggeredDescription(),
-                    participant.getSuggestedGenderT()
+                    participant.getSuggestedGenderT(),
                 });
             }
             System.out.println("CSV Created");
@@ -62,10 +63,9 @@ public class CSVConverter {
         LinkedList<VocalQuestions> vocalQuestionsList = new LinkedList<>();
         
 
-        try (CSVReader reader = new CSVReader(new FileReader(vocalQuestionsFullCSV))){
+        try (CSVReader reader = new CSVReader(new FileReader(vocalQuestionsFullWithGender))){
             String[] nextLine;
             int lineNumber = 0;
-            int lineTest = 0;
     
             while ((nextLine = reader.readNext()) != null){
                 lineNumber++;
@@ -104,7 +104,9 @@ public class CSVConverter {
                     String flyOnSuits = nextLine[46];
                     String flyOnMark = nextLine[47];
 
-                    VocalQuestions vocalQuestions = new VocalQuestions(gender, shinePref, clearlyPref, finePref, mOEPref, myOnePref, flyOnPref, shineSim, clearlySim, fineSim, mOESim, myOneSim, flyOnSim, shineSuits, clearlySuits, fineSuits, mOESuits, myOneSuits, flyOnSuits, shineMark, clearlyMark, fineMark, mOEMark, myOneMark, flyOnMark);
+                    String particpantGender = nextLine[48];
+
+                    VocalQuestions vocalQuestions = new VocalQuestions(gender, shinePref, clearlyPref, finePref, mOEPref, myOnePref, flyOnPref, shineSim, clearlySim, fineSim, mOESim, myOneSim, flyOnSim, shineSuits, clearlySuits, fineSuits, mOESuits, myOneSuits, flyOnSuits, shineMark, clearlyMark, fineMark, mOEMark, myOneMark, flyOnMark, particpantGender);
 
                     vocalQuestionsList.add(vocalQuestions);
                 } else {
@@ -140,7 +142,9 @@ public class CSVConverter {
                     String flyOnSuits = nextLine[22];
                     String flyOnMark = nextLine[23];
 
-                    VocalQuestions vocalQuestions = new VocalQuestions(gender, shinePref, clearlyPref, finePref, mOEPref, myOnePref, flyOnPref, shineSim, clearlySim, fineSim, mOESim, myOneSim, flyOnSim, shineSuits, clearlySuits, fineSuits, mOESuits, myOneSuits, flyOnSuits, shineMark, clearlyMark, fineMark, mOEMark, myOneMark, flyOnMark);
+                    String particpantGender = nextLine[48];
+
+                    VocalQuestions vocalQuestions = new VocalQuestions(gender, shinePref, clearlyPref, finePref, mOEPref, myOnePref, flyOnPref, shineSim, clearlySim, fineSim, mOESim, myOneSim, flyOnSim, shineSuits, clearlySuits, fineSuits, mOESuits, myOneSuits, flyOnSuits, shineMark, clearlyMark, fineMark, mOEMark, myOneMark, flyOnMark, particpantGender);
                     
                     vocalQuestionsList.add(vocalQuestions);
                 }

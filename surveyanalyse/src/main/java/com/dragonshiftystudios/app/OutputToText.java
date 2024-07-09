@@ -6,10 +6,15 @@ import java.io.IOException;
 public class OutputToText {
 
     BufferedWriter writer;
+    String fileName = "results2.txt";
+
+    public void setFileName(String fileName){
+        this.fileName = fileName;
+    }
 
     public void openTextFile(){
         try {
-            writer = new BufferedWriter(new FileWriter("output.txt", true));
+            writer = new BufferedWriter(new FileWriter(fileName, true));
         } catch (IOException e){
             e.printStackTrace();
         }

@@ -8,18 +8,19 @@ public class App
         AnalyseText analyseText = new AnalyseText();
         AnalyseQuestions analyseQuestions = new AnalyseQuestions();
         
-        // analyseText.startDescriptionAnalysis();
+        analyseText.startDescriptionAnalysis();
+        analyseText.showSuggestedGenderScores();
 
-        analyseQuestions.getVocalQuestionsList();
-        analyseQuestions.openFileWriter();
-        analyseQuestions.getPreferencesTotal();
-        analyseQuestions.getGenderedPreferences("Male");
-        analyseQuestions.getGenderedPreferences("Female");
+        // analyseQuestions.getVocalQuestionsList();
+        // analyseQuestions.openFileWriter();
+        // analyseQuestions.getPreferencesTotal();
+        // analyseQuestions.getGenderedPreferences("Male");
+        // analyseQuestions.getGenderedPreferences("Female");
         
-        analyseQuestions.getSimilarity("Total");
-        analyseQuestions.getSimilarity("Male");
-        analyseQuestions.getSimilarity("Female");
+        // analyseQuestions.getSimilarity("Total");
+        // analyseQuestions.getSimilarity("Male");
+        // analyseQuestions.getSimilarity("Female");
 
-        analyseQuestions.closeFileWriter();
+        // analyseQuestions.closeFileWriter();
     }
 }
