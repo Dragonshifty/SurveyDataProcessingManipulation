@@ -58,6 +58,7 @@ public class AnalyseQuestions {
         outputToText.writeToText("Gender preference for all participants:");
         outputToText.writeToText("");
 
+        // Percentage not the mean*
         double shineMaleMean = (shineMale / listTotal) * 100;
         double shineFemaleMean = (shineFemale / listTotal) * 100;
         displayPreferenceResults("Shine", shineMale, shineMaleMean, shineFemale, shineFemaleMean);
@@ -87,7 +88,6 @@ public class AnalyseQuestions {
     }
 
     private void displayPreferenceResults(String track, int male, double maleMean, int female, double femaleMean ){
-        // System.out.println(String.format("%s - Male: %d (%.2f%%), Female: %d (%.2f%%)", track, male, maleMean, female, femaleMean));
         outputToText.writeToText(String.format("%s - Male: %d (%.2f%%), Female: %d (%.2f%%)", track, male, maleMean, female, femaleMean));
     }
 

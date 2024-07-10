@@ -7,9 +7,18 @@ public class App
     {
         AnalyseText analyseText = new AnalyseText();
         AnalyseQuestions analyseQuestions = new AnalyseQuestions();
+        AnalyseByParticipantGender analyseByParticipantGender = new AnalyseByParticipantGender();
+
+        // Run whatever is required
         
-        analyseText.startDescriptionAnalysis();
-        analyseText.showSuggestedGenderScores();
+        // analyseByParticipantGender.outPutPreferenceByGender();
+        // analyseByParticipantGender.outPutFamiliarityByGender()
+        analyseByParticipantGender.outPutRankingsByGender();
+
+        // analyseByParticipantGender.debugShineTrackPreferences();
+        
+        // analyseText.startDescriptionAnalysis();
+        // analyseText.showSuggestedGenderScores();
 
         // analyseQuestions.getVocalQuestionsList();
         // analyseQuestions.openFileWriter();
