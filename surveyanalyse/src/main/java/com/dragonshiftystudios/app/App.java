@@ -10,10 +10,12 @@ public class App
         AnalyseByParticipantGender analyseByParticipantGender = new AnalyseByParticipantGender();
 
         // Run whatever is required
+
+        analyseText.getSuggestedGenderByGender();
         
         // analyseByParticipantGender.outPutPreferenceByGender();
         // analyseByParticipantGender.outPutFamiliarityByGender()
-        analyseByParticipantGender.outPutRankingsByGender();
+        // analyseByParticipantGender.outPutRankingsByGender();
 
         // analyseByParticipantGender.debugShineTrackPreferences();
         

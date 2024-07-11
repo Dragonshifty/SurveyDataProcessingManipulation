@@ -8,11 +8,13 @@ public class Participant {
     private String suggestedGenderDW;
     private String suggestedGenderR;
     private String suggestedGenderT;
+    private String participantGender;
 
-    public Participant(String dreamWistfullyDescription, String risingDescription, String triggeredDescription){
+    public Participant(String dreamWistfullyDescription, String risingDescription, String triggeredDescription, String participantGender){
         this.dreamWistfullyDescription = dreamWistfullyDescription;
         this.risingDescription = risingDescription;
         this.triggeredDescription = triggeredDescription;
+        this.participantGender = participantGender;
     }
 
     public String getDreamWistfullyDescription(){
@@ -49,5 +51,9 @@ public class Participant {
 
     public String getSuggestedGenderT() {
         return suggestedGenderT;
+    }
+
+    public String getParticipantGender(){
+        return participantGender;
     }
 }

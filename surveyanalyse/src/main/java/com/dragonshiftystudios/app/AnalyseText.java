@@ -4,6 +4,8 @@ import java.util.Arrays;
 
 public class AnalyseText {
     CSVConverter csvConverter = new CSVConverter();
+    OutputToText outputToText = new OutputToText();
+    String genderByGenderFileName = "suggestedgenderbygender.txt";
     
     private LinkedList<Participant> participants = new LinkedList<>();
 
@@ -11,6 +13,15 @@ public class AnalyseText {
         getParticpantsList();
         analyseForGender();
         csvConverter.insertGenderCodeAndRebuildCSV(participants);
+    }
+
+    public void getSuggestedGenderByGender(){
+        getParticpantsList();
+        analyseForGender();
+        outputToText.setFileName(genderByGenderFileName);
+        outputToText.openTextFile();
+        showSuggestedGenderScoresByParticipantGender();
+        outputToText.closeTextFile();
     }
     
     public void getParticpantsList()
@@ -207,5 +218,194 @@ public class AnalyseText {
         System.out.println("T Female " + tFemale);
         System.out.println("T Undelcared " + tUndeclared);
         System.out.println("T Non Binary " + tNonBinary);
+    }
+
+    public void showSuggestedGenderScoresByParticipantGender()
+    {
+        // Track, suggested gender, participant gender
+        int dwMaleMale = 0;
+        int dwFemaleMale = 0;
+        int dwNonBinaryMale = 0;
+        int dwUndeclaredMale = 0;
+
+        int rMaleMale = 0;
+        int rFemaleMale = 0;
+        int rNonBinaryMale = 0;
+        int rUndeclaredMale = 0;
+
+        int tMaleMale = 0;
+        int tFemaleMale = 0;
+        int tNonBinaryMale = 0;
+        int tUndeclaredMale = 0;
+
+        int dwMaleFemale = 0;
+        int dwFemaleFemale = 0;
+        int dwNonBinaryFemale = 0;
+        int dwUndeclaredFemale = 0;
+
+        int rMaleFemale = 0;
+        int rFemaleFemale = 0;
+        int rNonBinaryFemale = 0;
+        int rUndeclaredFemale = 0;
+
+        int tMaleFemale = 0;
+        int tFemaleFemale = 0;
+        int tNonBinaryFemale = 0;
+        int tUndeclaredFemale = 0;
+
+        int femaleParticipant = 0;
+        int maleParticipant = 0;
+
+        for (Participant participant : participants){
+            String dwGender = participant.getSuggestedGenderDW();
+            String rGender = participant.getSuggestedGenderR();
+            String tGender = participant.getSuggestedGenderT();
+            String participantGender = participant.getParticipantGender();
+            if (participantGender.equals("0")) femaleParticipant++;
+            if (participantGender.equals("1")) maleParticipant++;
+            
+            if (dwGender == null){
+                if (participantGender.equals("0")) dwUndeclaredFemale++;
+                if (participantGender.equals("1")) dwUndeclaredMale++;
+            } else {
+                switch (dwGender) {
+                    case "1":
+                        if (participantGender.equals("0")) dwMaleFemale++;
+                        if (participantGender.equals("1")) dwMaleMale++;
+                        break;
+                    case "2":
+                        if (participantGender.equals("0")) dwFemaleFemale++;
+                        if (participantGender.equals("1")) dwFemaleMale++;
+                        break;
+                    case "3":
+                        if (participantGender.equals("0")) dwNonBinaryFemale++;
+                        if (participantGender.equals("1")) dwNonBinaryMale++;
+                        break;
+                    default:
+                        if (participantGender.equals("0")) dwUndeclaredFemale++;
+                        if (participantGender.equals("1")) dwUndeclaredMale++;
+                        break;
+                }
+            }
+            
+            if (rGender == null){
+                if (participantGender.equals("0")) rUndeclaredFemale++;
+                if (participantGender.equals("1")) rUndeclaredMale++;
+            } else {
+                switch (rGender) {
+                    case "1":
+                        if (participantGender.equals("0")) rMaleFemale++;
+                        if (participantGender.equals("1")) rMaleMale++;
+                        break;
+                    case "2":
+                        if (participantGender.equals("0")) rFemaleFemale++;
+                        if (participantGender.equals("1")) rFemaleMale++;
+                        break;
+                    case "3":
+                        if (participantGender.equals("0")) rNonBinaryFemale++;
+                        if (participantGender.equals("1")) rNonBinaryMale++;
+                        break;
+                    default:
+                        if (participantGender.equals("0")) rUndeclaredFemale++;
+                        if (participantGender.equals("1")) rUndeclaredMale++;
+                        break;
+                }
+            }
+            
+            if (tGender == null){
+                if (participantGender.equals("0")) tUndeclaredFemale++;
+                if (participantGender.equals("1")) tUndeclaredMale++;
+            } else {
+                switch (tGender) {
+                    case "1":
+                        if (participantGender.equals("0")) tMaleFemale++;
+                        if (participantGender.equals("1")) tMaleMale++;
+                        break;
+                    case "2":
+                        if (participantGender.equals("0")) tFemaleFemale++;
+                        if (participantGender.equals("1")) tFemaleMale++;
+                        break;
+                    case "3":
+                        if (participantGender.equals("0")) tNonBinaryFemale++;
+                        if (participantGender.equals("1")) tNonBinaryMale++;
+                        break;
+                    default:
+                        if (participantGender.equals("0")) tUndeclaredFemale++;
+                        if (participantGender.equals("1")) tUndeclaredMale++;
+                        break;
+                }
+            }  
+        }
+
+        int[] gendArray = {
+            dwMaleMale,
+            dwFemaleMale,
+            dwNonBinaryMale,
+            dwUndeclaredMale,
+
+            rMaleMale,
+            rFemaleMale,
+            rNonBinaryMale,
+            rUndeclaredMale,
+
+            tMaleMale,
+            tFemaleMale,
+            tNonBinaryMale,
+            tUndeclaredMale,
+
+            dwMaleFemale,
+            dwFemaleFemale,
+            dwNonBinaryFemale,
+            dwUndeclaredFemale,
+
+            rMaleFemale,
+            rFemaleFemale,
+            rNonBinaryFemale,
+            rUndeclaredFemale,
+
+            tMaleFemale,
+            tFemaleFemale,
+            tNonBinaryFemale,
+            tUndeclaredFemale
+        };
+
+        for (int i = 0; i < gendArray.length; i++){
+            String participantGend = i < 12 ? "Male" : "Female";
+
+            String suggestedGend = "";
+            if (i % 4 == 0) {
+                suggestedGend = "Male";
+            } else if (i % 4 == 1) {
+                suggestedGend = "Female";
+            } else if (i % 4 == 2) {
+                suggestedGend = "Non-Binary";
+            } else if (i % 4 == 3) {
+                suggestedGend = "Undeclared";
+            }
+
+            String trackName = "";
+            if ((i >= 0 && i < 4) || (i >= 12 && i < 16)) {
+                trackName = "DW";
+            } else if ((i >= 4 && i < 8) || (i >= 16 && i < 20)) {
+                trackName = "Rising";
+            } else if ((i >= 8 && i < 12) || (i >= 20 && i < 24)) {
+                trackName = "Triggered";
+            }
+
+            int counter = gendArray[i];
+            int participantCounter = i < 12 ? maleParticipant : femaleParticipant;
+
+            outputGenderByGender(participantGend, suggestedGend, trackName, counter, participantCounter);
+        }
+        
+        // outputGenderByGender("Male", "Male", "DW", dwMaleMale, maleParticipant);
+        // outputGenderByGender("Male", "Female", "DW", dwFemaleMale, maleParticipant);
+        // outputGenderByGender("Male", "NB", "DW", dwNonBinaryMale, maleParticipant); 
+        // outputGenderByGender("Male", "Undeclared", "DW", dwUndeclaredMale, maleParticipant);
+    }
+
+    private void outputGenderByGender(String participantGender, String suggestedGender, String track, int count, int genderCount) {
+        double percentage = ((double) count / genderCount) * 100;
+        outputToText.writeToText(String.format("Participant: %s Suggested Gender: %s Track: %s - %d (%.2f%%)", participantGender, suggestedGender, track, count, percentage));
     }
 }

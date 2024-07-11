@@ -27,8 +27,9 @@ public class CSVConverter {
                 String columnDW = nextLine[0];
                 String columnR = nextLine[1];
                 String columnT = nextLine[2];
+                String columnPG = nextLine[3];
 
-                Participant participant = new Participant(columnDW, columnR, columnT);
+                Participant participant = new Participant(columnDW, columnR, columnT, columnPG);
                 participants.add(participant);
             }
         } catch (IOException | CsvValidationException e) {
